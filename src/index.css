@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+
+/* src/index.css */
+:root {
+    /* Core & Brand Colors */
+    --primary-main: #F1BD46;
+    --primary-light: #F8D78F;
+    --primary-dark: #D9A93F;
+    --accent-main: #4682B4;
+    --accent-light: #7DAFCE;
+    --accent-dark: #3A6A92;
+
+    /* Neutral & Text Colors */
+    --text-main: #212830;
+    --text-secondary: #7C7F84;
+    --text-disabled: #B0B3B8;
+    --text-on-primary: #212830;
+
+    /* Background Colors */
+    --bg-default: #FFFFFF;
+    --bg-paper: #F8F9FA;
+    --bg-subtle: #E9ECEF;
+
+    /* Semantic (Feedback) Colors */
+    --success-main: #28A745;
+    --success-light: #D4EDDA;
+    --warning-main: #FFC107;
+    --warning-light: #FFF3CD;
+    --error-main: #DC3545;
+    --error-light: #F8D7DA;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--bg-default);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+}

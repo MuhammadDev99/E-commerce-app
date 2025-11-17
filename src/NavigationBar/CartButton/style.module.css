@@ -1,0 +1,27 @@
+.cartButton {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    text-decoration: none;
+    color: inherit
+}
+
+
+.cartButton:hover {
+    background-color: var(--primary-main);
+
+}
+
+.cartIcon {
+    height: 100%;
+}
+
+.cartItemCount {
+    margin-left: 0.5rem;
+    font-weight: bold;
+    font-size: large;
+}

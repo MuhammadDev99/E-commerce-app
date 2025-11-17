@@ -1,0 +1,185 @@
+/* General Page Container */
+.pageContainer {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    color: #333;
+}
+
+/* Product Detail Section */
+.productDetailContainer {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    /* Allows items to wrap on smaller screens */
+}
+
+.imageContainer {
+    flex: 1 1 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 500px;
+}
+
+.productImage {
+    border-radius: 50px;
+    max-width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.detailsContainer {
+    flex: 2 1 500px;
+    /* Allows this container to take more space */
+    display: flex;
+    flex-direction: column;
+}
+
+.productTitle {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+}
+
+.ratingContainer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.discountBadge {
+    background-color: #e63946;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+
+.productPrice {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2a9d8f;
+    margin: 0;
+    margin-bottom: 2rem;
+    /* color: var(--primary-main) */
+}
+
+.productDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Comments Section */
+.commentsSection {
+    border-top: 1px solid #eaeaea;
+    padding-top: 40px;
+}
+
+.commentsTitle {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+.commentCard {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.commentHeader {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.commentTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.commentText {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Product Not Found State */
+.notFoundContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    font-family: inherit;
+}
+
+.notFoundImage {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+    opacity: 0.7;
+}
+
+.notFoundText {
+    font-size: 1.5rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.notFoundButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.notFoundButton:hover {
+    background-color: #0056b3;
+}
+
+.highlightedWord {
+    font-weight: bold;
+}
+
+.priceContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.addToCartButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 50px;
+    background-color: #ffbf00;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    max-width: 200px;
+}
+
+.addToCartButton:hover {
+    background-color: #eaaf00;
+}

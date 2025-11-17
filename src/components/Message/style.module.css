@@ -1,0 +1,143 @@
+/* Animation for the message sliding in from the right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(110%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* NEW: Animation for the message sliding out */
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(110%);
+        opacity: 0;
+    }
+}
+
+/* Animation for the progress bar depleting over time */
+@keyframes progressBar {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+.messageContainer {
+    min-width: 320px;
+    max-width: 400px;
+    border-radius: 8px;
+    display: flex;
+    align-items: stretch;
+    background-color: #2D3748;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    color: #F7FAFC;
+    overflow: hidden;
+    animation: slideInRight 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+
+/* NEW: Class to trigger the disappear animation */
+.messageContainer.disappear {
+    /* This overrides the entry animation with the exit animation */
+    animation: slideOutRight 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+}
+
+.messageContainer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    animation: progressBar var(--duration) linear forwards;
+}
+
+
+/* .messageContainer.success {
+    border-left: 5px solid #48BB78;
+}
+
+.messageContainer.error {
+    border-left: 5px solid #F56565;
+}
+
+.messageContainer.warning {
+    border-left: 5px solid #ED8936;
+} */
+
+.messageContainer.success::after {
+    background-color: #48BB78;
+}
+
+.messageContainer.error::after {
+    background-color: #F56565;
+}
+
+
+
+.messageContainer.warning::after {
+    background-color: #ED8936;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    font-size: 24px;
+}
+
+.content {
+    padding: 16px;
+    padding-right: 40px;
+    flex-grow: 1;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 4px 0;
+    color: #FFFFFF;
+}
+
+.body {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #E2E8F0;
+}
+
+.closeButton {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}

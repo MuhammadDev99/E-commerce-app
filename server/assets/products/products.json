@@ -1,0 +1,642 @@
+[
+    {
+        "id": 1,
+        "title": "'Aura' Smart Ambient Desk Lamp",
+        "description": "A minimalist, Scandinavian-style smart desk lamp made of light-grained wood and a frosted white globe. It can be controlled via a smartphone app to change colors and brightness, syncing with music or the time of day to create the perfect atmosphere.",
+        "price": 89.99,
+        "stars": 5,
+        "discountPercentage": 15,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Absolutely stunning!",
+                "comment": "This lamp is the perfect addition to my home office. The light quality is amazing and the app is very intuitive. Love the sunrise alarm feature."
+            },
+            {
+                "stars": 4,
+                "title": "Great lamp, minor connection issues",
+                "comment": "Looks beautiful and works well most of the time, but it occasionally loses its connection to the WiFi. A quick reset fixes it."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "'Nomad' Portable Solar-Powered Speaker",
+        "description": "A rugged, waterproof portable Bluetooth speaker designed for outdoor adventures. It's covered in a durable, dark grey fabric with rubberized, shock-proof edges and features an integrated solar panel for charging on the go.",
+        "price": 119.5,
+        "stars": 5,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "My go-to adventure speaker",
+                "comment": "Took this hiking and it was brilliant. Sound is clear and loud, and the solar panel actually works. It's incredibly durable."
+            },
+            {
+                "stars": 4,
+                "title": "Solid speaker, solar is a bit slow",
+                "comment": "The speaker itself is fantastic. The solar charging is more for topping up than a full charge, but it's a great feature to have in a pinch."
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "'Echo' Vintage-Style Wireless Mechanical Keyboard",
+        "description": "A retro-inspired wireless mechanical keyboard with round, typewriter-style keys. It has a polished silver aluminum frame, matte cream-colored keys, RGB backlighting, and Bluetooth 5.0 connectivity.",
+        "price": 135.0,
+        "stars": 4.8,
+        "discountPercentage": 10,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "The most satisfying typing experience!",
+                "comment": "I love everything about this keyboard. The clicky sound is perfect, it looks amazing on my desk, and the wireless connection is flawless."
+            },
+            {
+                "stars": 5,
+                "title": "Stunning and functional",
+                "comment": "It's a piece of art. The build quality is top-notch and the battery life is surprisingly long. Worth every penny."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "'Terra' Handcrafted Ceramic Dinnerware Set (16-Piece)",
+        "description": "An artisan-crafted 16-piece ceramic dinnerware set for four. Each piece has a unique, slightly irregular shape, a speckled, earthy-green glaze, and a raw, unglazed rim.",
+        "price": 220.0,
+        "stars": 3.9,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Unique and Beautiful Set",
+                "comment": "These are even more beautiful in person. You can feel the quality. They make every meal feel special. I get so many compliments on them."
+            },
+            {
+                "stars": 4,
+                "title": "Love them, but handle with care",
+                "comment": "Gorgeous set, but they feel a bit more delicate than mass-produced plates. We hand wash them just to be safe. No chips so far!"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "'Oasis' Self-Watering Indoor Planter",
+        "description": "A sleek, modern self-watering planter made from matte white recycled plastic. It features a transparent water reservoir at the bottom, showing the water level, combining style and functionality for healthy indoor plants.",
+        "price": 29.99,
+        "stars": 5,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Saved my plants!",
+                "comment": "I am terrible at remembering to water my plants, and this has been a lifesaver. My monstera is thriving! Plus, it looks very chic."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "'Haven' Weighted Organic Cotton Throw Blanket",
+        "description": "A luxurious and cozy weighted throw blanket made from chunky, knitted organic cotton in a calming, neutral beige color. Designed to provide gentle, comforting pressure.",
+        "price": 175.0,
+        "stars": 3.8,
+        "discountPercentage": 20,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Like a warm hug",
+                "comment": "This blanket is incredible. The weight is perfect and the fabric is so soft and breathable. I've been sleeping so much better."
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "'Artisan' Pour-Over Coffee Maker Set",
+        "description": "An elegant pour-over coffee maker set, including a glass carafe with a polished olive wood collar and a reusable stainless steel mesh filter.",
+        "price": 55.0,
+        "stars": 3.7,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Makes the best coffee",
+                "comment": "A beautiful and functional coffee maker. The stainless steel filter is eco-friendly and lets all the delicious oils through. My morning coffee ritual has been upgraded."
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "title": "'Roam' All-Weather Convertible Backpack",
+        "description": "A versatile and stylish convertible backpack made from water-resistant, charcoal-grey canvas with genuine leather accents and brass buckles. Can be transformed from a backpack to a messenger bag.",
+        "price": 95.0,
+        "stars": 1.4,
+        "discountPercentage": 5,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Perfect for travel and daily use",
+                "comment": "I love how adaptable this bag is. It's my daily work bag during the week and my travel bag on the weekends. The quality is excellent."
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "title": "'Stellar' Celestial-Themed Sterling Silver Necklace",
+        "description": "A delicate and elegant sterling silver necklace featuring a small, crescent moon pendant alongside a tiny, sparkling star charm encrusted with cubic zirconia.",
+        "price": 65.0,
+        "stars": 4.9,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Dainty and beautiful",
+                "comment": "I wear this every day. It's so delicate and catches the light beautifully. It was packaged nicely and makes a great gift."
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "'Solstice' Polarized Bamboo Sunglasses",
+        "description": "Eco-friendly sunglasses with frames handcrafted from sustainable, lightweight bamboo. The lenses are a cool, polarized blue-green mirror tint.",
+        "price": 75.0,
+        "stars": 4.6,
+        "discountPercentage": 10,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Stylish and eco-friendly!",
+                "comment": "These are my new favorite sunglasses. They are incredibly lightweight and comfortable, and the polarization is fantastic. I love that they're made from bamboo."
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "'Urban Trek' Men's Waterproof Leather Boots",
+        "description": "A pair of stylish and durable men's boots crafted from dark brown, waterproof full-grain leather. They feature a rugged, anti-slip rubber sole and contrasting red laces.",
+        "price": 180.0,
+        "stars": 1.7,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Excellent quality and comfort",
+                "comment": "These boots are fantastic. They broke in quickly and are now incredibly comfortable. I've worn them in the rain and my feet stayed completely dry."
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "'Serene' Aromatherapy Essential Oil Diffuser",
+        "description": "A chic and tranquil ultrasonic essential oil diffuser crafted from light-colored wood and white ceramic. It emits a subtle, warm light, creating a peaceful and relaxing ambiance.",
+        "price": 45.99,
+        "stars": 3.5,
+        "discountPercentage": 10,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "So peaceful and quiet",
+                "comment": "This diffuser is not only beautiful but also whisper-quiet. It creates a fine mist and makes my whole living room smell amazing."
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "'Zenith' Eco-Friendly Cork Yoga Mat",
+        "description": "A premium, non-slip yoga mat made from sustainable and antimicrobial cork. The mat has a beautiful, laser-etched geometric mandala design in the center.",
+        "price": 85.0,
+        "stars": 2.8,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Best yoga mat I've ever owned",
+                "comment": "The grip on this cork mat is unbelievable, especially when you get a little sweaty. The design is gorgeous and it feels great to practice on a natural material."
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Organic Matcha Green Tea Ceremony Set",
+        "description": "A traditional Japanese matcha tea ceremony set. It includes a ceramic bowl (chawan), a bamboo whisk (chasen), and a bamboo scoop (chashaku) for the perfect preparation.",
+        "price": 49.99,
+        "stars": 0.9,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Perfect for beginners!",
+                "comment": "This set has everything you need to start making matcha properly. The quality of the tools is excellent and the bowl is beautiful."
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "'Harvest Gold' Small-Batch Wildflower Honey",
+        "description": "A glass jar of pure, golden wildflower honey with a small wooden honey dipper. The honey is raw and unfiltered, sourced from a single apiary.",
+        "price": 18.0,
+        "stars": 3,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Incredibly delicious!",
+                "comment": "This is the best honey I have ever tasted. You can really taste the floral notes. It's perfect in tea or just on a spoon!"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "'Volcano' Fiery Habanero Hot Sauce",
+        "description": "A bottle of artisanal habanero hot sauce with a vibrant, deep-orange color. It has a fiery heat balanced with a hint of fruity mango.",
+        "price": 12.99,
+        "stars": 0.7,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Perfect heat and flavor!",
+                "comment": "This hot sauce is amazing. It has a serious kick but also so much flavor from the habanero and mango. I put it on everything."
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "title": "'Journeyman' Leather-Bound A5 Notebook",
+        "description": "A classic, refillable A5 notebook bound in rich, dark brown genuine leather. It has a wrap-around leather strap to keep it closed and comes with high-quality, fountain-pen-friendly paper.",
+        "price": 38.0,
+        "stars": 5,
+        "discountPercentage": 10,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "A joy to write in",
+                "comment": "The leather is soft and smells amazing. The paper is thick and smooth. This notebook makes me want to write more. Highly recommended."
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "title": "'Cosmos' 1000-Piece Galaxy Jigsaw Puzzle",
+        "description": "A challenging and stunning 1000-piece circular jigsaw puzzle depicting a vibrant and colorful galaxy nebula. The pieces are high-quality and lock together perfectly.",
+        "price": 24.99,
+        "stars": 0.6,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Beautiful and challenging puzzle",
+                "comment": "The colors in this puzzle are just breathtaking. It was definitely a challenge, but so rewarding to finish. The final piece is beautiful enough to frame."
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "title": "Indoor Herb Garden Starter Kit",
+        "description": "A complete indoor herb garden kit including three rustic terracotta pots, organic potting soil, seeds for basil, mint, and rosemary, and a miniature tool set.",
+        "price": 32.5,
+        "stars": 4.5,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Great gift!",
+                "comment": "Bought this as a gift and it was a huge hit. It has everything you need to get started and the pots are very cute. The herbs sprouted in a week!"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "title": "'The Mixologist' Artisan Mocktail Syrup Kit",
+        "description": "A curated kit for crafting delicious non-alcoholic cocktails. Includes three artisanal syrups (Spiced Orange & Ginger, Rosemary & Grapefruit, Strawberry & Mint) and a recipe card.",
+        "price": 39.99,
+        "stars": 4.8,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Elevates your drink game!",
+                "comment": "These syrups are incredible! They make it so easy to create complex and delicious mocktails. The Rosemary & Grapefruit is my favorite."
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "title": "'Pawsitive' Orthopedic Memory Foam Dog Bed",
+        "description": "A luxurious, rectangular orthopedic dog bed with a plush, machine-washable faux fur cover and a supportive memory foam base. Raised bolsters provide a sense of security and a comfortable headrest.",
+        "price": 99.99,
+        "stars": 5,
+        "discountPercentage": 15,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "My dog has never been happier!",
+                "comment": "He absolutely loves his new bed. The memory foam is clearly very comfortable for his old joints. He spends all his time in it now. Worth every penny."
+            },
+            {
+                "stars": 5,
+                "title": "Excellent quality",
+                "comment": "Very well-made bed. The cover is easy to remove and wash, which is a huge plus. My dog took to it immediately."
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "title": "'The Aviary' Modern Geometric Bird Feeder",
+        "description": "A sleek hanging bird feeder with a minimalist, geometric design, constructed from natural cedar wood and matte black metal. Clear acrylic panels allow for easy viewing of the seed level.",
+        "price": 42.0,
+        "stars": 4.6,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Stylish and the birds love it",
+                "comment": "This looks like a piece of art in my garden. It's easy to fill and clean, and it attracts a lot of beautiful songbirds."
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "title": "'Aqua Scape' Floating Aquarium Log",
+        "description": "A hyper-realistic, hollow resin log for fish tanks. It is covered in detailed bark texture and faux moss, with smooth, swim-through holes for fish to explore and hide.",
+        "price": 19.99,
+        "stars": 4.4,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "My fish love their new log!",
+                "comment": "Looks very realistic in the tank. My betta and shrimp are constantly swimming through it and hiding inside. Great addition to the aquarium."
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "title": "'Stratus' Ultralight One-Person Camping Hammock",
+        "description": "An ultralight camping hammock made from durable, ripstop nylon in a deep forest green color. It packs down into a small attached stuff sack and includes tree-friendly straps and carabiners.",
+        "price": 69.95,
+        "stars": 4.7,
+        "discountPercentage": 10,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Lightweight and so comfortable",
+                "comment": "I can't believe how small this packs down. It's perfect for backpacking. Super easy to set up and very comfortable for a great night's sleep in the woods."
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "title": "'Magma' Insulated Stainless Steel Campfire Mug",
+        "description": "A rugged, 12 oz insulated mug made from double-walled stainless steel with a matte black, powder-coated finish. Features a spill-resistant lid and an ergonomic handle to keep drinks hot for hours.",
+        "price": 22.5,
+        "stars": 4.8,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "My new favorite mug",
+                "comment": "This thing is indestructible and it keeps my coffee piping hot for way longer than a normal mug. Perfect for camping or just a cold morning at home."
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "title": "'Pathfinder' Multi-Tool Hiking Stick",
+        "description": "An adjustable, lightweight aluminum hiking stick with a cork grip handle. The top unscrews to reveal a hidden compass, a flint fire starter, and an emergency whistle.",
+        "price": 48.0,
+        "stars": 4.3,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Sturdy and surprisingly useful",
+                "comment": "The pole itself is a solid, reliable hiking stick. The tools in the handle are a great bonus for peace of mind on the trail. The compass is accurate enough."
+            },
+            {
+                "stars": 3,
+                "title": "It's a good stick",
+                "comment": "The hiking stick part is fine. The tools feel a bit like a novelty, I wouldn't rely on them in a serious survival situation. But it's cool to have."
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "title": "'Anchor' Weighted Headphone Stand",
+        "description": "An elegant and modern headphone stand crafted from solid walnut wood with a brushed aluminum base. The weighted base ensures stability, and the curved shape protects headphone padding.",
+        "price": 39.99,
+        "stars": 5,
+        "discountPercentage": 5,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Looks amazing on my desk",
+                "comment": "Simple, elegant, and does its job perfectly. The wood is beautiful and it's heavy enough that it never tips over. Finally a proper home for my headphones."
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "title": "'Grid' Tech Organizer and Travel Case",
+        "description": "A compact travel case for organizing electronic accessories. A system of woven elastic straps and pockets neatly holds charging cables, a power bank, adapters, and memory cards.",
+        "price": 25.0,
+        "stars": 2.7,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "No more tangled cables!",
+                "comment": "This organizer is a game-changer for travel. Everything has a place and my bag is so much tidier. The elastic grid is very versatile."
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "title": "'Eclipse' Webcam Privacy Cover (3-Pack)",
+        "description": "A set of three ultra-thin, matte black metal webcam covers with a simple slider design. Adheres to laptops, tablets, and smartphones for instant privacy.",
+        "price": 9.99,
+        "stars": 5,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Simple, effective, and looks clean",
+                "comment": "So much better than using a piece of tape. It's super thin so my laptop closes perfectly, and the sliding action is smooth. Great peace of mind."
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "title": "'Builder's Blocks' Magnetic Wooden Building Tiles (60-Piece Set)",
+        "description": "A set of 60 colorful, magnetic wooden building blocks in various shapes. The blocks have safe, embedded magnets and are made from smooth, non-toxic, brightly colored wood.",
+        "price": 59.99,
+        "stars": 3.9,
+        "discountPercentage": 10,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Hours of creative fun",
+                "comment": "My kids absolutely love these. The magnets are strong enough to build tall structures and the wood quality is excellent. Much nicer than the plastic versions."
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "title": "'Star Gazer' Kids' Telescope and Astronomy Kit",
+        "description": "A vibrant, easy-to-use beginner's telescope for children, colored in bright blue and yellow. The kit includes a simple tripod, an illustrated star chart, and a sticker book of planets.",
+        "price": 79.99,
+        "stars": 4.2,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Great first telescope!",
+                "comment": "Perfect for my curious 8-year-old. It was easy to set up and she was thrilled to see the craters on the moon for the first time. A wonderful educational toy."
+            },
+            {
+                "stars": 3,
+                "title": "It's a toy, manage expectations",
+                "comment": "It works for looking at the moon, but that's about it. It's a bit flimsy. Good for sparking interest, but not for serious stargazing."
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "title": "'Dino Dig' Paleontology Excavation Kit",
+        "description": "An educational excavation kit for kids. The set includes a block of soft plaster, a wooden mallet, a chisel, and a brush to carefully excavate a replica T-Rex skeleton.",
+        "price": 21.99,
+        "stars": 3.5,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "My son was occupied for hours!",
+                "comment": "This was a fantastic rainy day activity. It's a bit messy, so do it on a tray, but he had an absolute blast pretending to be a paleontologist."
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "title": "'Spectrum' Professional Watercolor Paint Set in Tin Case",
+        "description": "A professional watercolor set in a sleek, black metal tin, containing 24 vibrant, solid watercolor pans, a high-quality watercolor brush, and a water brush pen.",
+        "price": 35.5,
+        "stars": 4.7,
+        "discountPercentage": 5,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Vibrant colors, great value",
+                "comment": "I'm really impressed with the quality of these paints for the price. The pigments are rich and they re-wet beautifully. The tin is perfect for travel."
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "title": "'Calligrapher's Choice' Glass Dip Pen and Ink Set",
+        "description": "An exquisite calligraphy set featuring a crafted glass dip pen with a spiraled, iridescent handle. The set includes five small bottles of colored ink (black, blue, green, red, gold).",
+        "price": 29.99,
+        "stars": 5,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Almost too beautiful to use!",
+                "comment": "This set is gorgeous. The pen writes smoothly and holds a surprising amount of ink. It makes writing a letter feel like a special occasion."
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "title": "DIY Terrarium Building Kit",
+        "description": "A complete do-it-yourself terrarium kit. It includes a stylish geometric glass container, layers of soil and decorative pebbles, and a variety of small succulents and moss.",
+        "price": 44.99,
+        "stars": 4.5,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Fun project, beautiful result",
+                "comment": "Everything arrived healthy and well-packaged. The instructions were clear and it was a really fun and relaxing project. My new terrarium looks great on my desk."
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "title": "'Click & Grow' Smart Indoor Garden",
+        "description": "A self-contained smart garden for growing fresh herbs indoors. The device is a clean, white unit with a built-in, adjustable LED grow light and self-watering system.",
+        "price": 129.95,
+        "stars": 3.8,
+        "discountPercentage": 10,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Gardening for dummies!",
+                "comment": "I have zero gardening skills, but I'm successfully growing basil, mint, and parsley on my kitchen counter. This thing does all the work for you. It's amazing."
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "title": "Reusable Beeswax Food Wraps (Set of 3)",
+        "description": "A set of three eco-friendly beeswax food wraps in small, medium, and large sizes. The wraps are made from organic cotton and feature a modern honeycomb and bee pattern.",
+        "price": 19.99,
+        "stars": 3.7,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Great alternative to plastic wrap",
+                "comment": "I'm so happy I made the switch. These wraps are easy to use, easy to clean, and they keep my food fresh. The patterns are cute too."
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "title": "'The Voyager' Antique Ship in a Bottle Hobby Kit",
+        "description": "An intricate DIY hobby kit for building a classic ship in a bottle. Includes a clear glass bottle, pre-cut wooden pieces for the ship, cloth sails, rigging thread, and detailed instructions.",
+        "price": 34.99,
+        "stars": 2.4,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "A wonderfully challenging project",
+                "comment": "This was my first attempt at a ship in a bottle and it was so much fun. It requires patience, but the result is so satisfying. The components are all high quality."
+            },
+            {
+                "stars": 4,
+                "title": "Not for the faint of heart!",
+                "comment": "The 'intricate' in the description is no joke. The tools provided are essential. I'm very proud of the finished product, but it was a challenge!"
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "title": "Acupressure Mat and Pillow Set",
+        "description": "A wellness set including a foam mat and a neck pillow, both covered in calming teal-colored linen fabric and thousands of small, white plastic acupressure spikes.",
+        "price": 49.95,
+        "stars": 4.5,
+        "discountPercentage": 20,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Weirdly wonderful!",
+                "comment": "It's uncomfortable for the first minute, but then a wave of warmth and relaxation spreads across your back. It's amazing for tension and muscle soreness."
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "title": "'Code Breaker' Cryptex Puzzle Box",
+        "description": "An intricate, mechanically functioning puzzle box inspired by historical cryptexes. Made from aged, distressed brass and features five rotating rings with letters to set a secret password.",
+        "price": 55.0,
+        "stars": 5,
+        "discountPercentage": 0,
+        "comments": [
+            {
+                "stars": 5,
+                "title": "Amazing quality and so cool",
+                "comment": "This thing is heavy and feels so authentic. The rings turn smoothly. It's a fantastic conversation piece and a really fun way to give a gift."
+            }
+        ]
+    }
+]

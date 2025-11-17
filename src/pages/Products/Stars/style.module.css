@@ -1,0 +1,10 @@
+.stars {
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.starsCount {
+    margin-right: 0.5rem;
+}

@@ -1,0 +1,16 @@
+.rendererContainer {
+    /* Positions the entire stack at the top-right */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+
+    /* These three lines create the vertical stack */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Creates a nice space between each message */
+
+    /* Aligns the messages to the right side of the container */
+    align-items: flex-end;
+}

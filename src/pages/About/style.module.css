@@ -1,0 +1,211 @@
+.aboutPage {
+    background-color: var(--bg-default);
+}
+
+/* --- Hero Section --- */
+.hero {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: url('/images/about-hero.jpg') no-repeat center center/cover;
+}
+
+.heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.heroTitle {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.heroSubtitle {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* --- General Content Section Styling --- */
+.contentSection {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+}
+
+.sectionTitle {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3.5rem;
+    color: var(--text-main);
+}
+
+/* --- Story Section --- */
+.storySection {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.storyImage {
+    flex: 1;
+    min-width: 300px;
+}
+
+.storyImage img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.storyText {
+    flex: 1.2;
+    min-width: 300px;
+}
+
+.storyText h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.storyText p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.storyText p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* --- Values Section --- */
+.valuesSection {
+    background-color: var(--bg-paper);
+}
+
+.valuesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.valueCard {
+    text-align: center;
+    padding: 2.5rem;
+    background-color: var(--bg-default);
+    border-radius: 12px;
+    border: 1px solid var(--bg-subtle);
+}
+
+.valueIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.valueCard h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.valueCard p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* --- Team Section --- */
+.teamSection {
+    padding-bottom: 6rem;
+}
+
+.teamGrid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.teamMember {
+    text-align: center;
+    flex-basis: 280px;
+}
+
+.teamMember img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.teamMember:hover img {
+    transform: scale(1.05);
+}
+
+.teamMember h3 {
+    font-size: 1.4rem;
+    margin: 0 0 5px 0;
+}
+
+.teamMember p {
+    font-size: 1rem;
+    color: var(--accent-main);
+    font-weight: 500;
+}
+
+/* --- CTA Section --- */
+.ctaSection {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: var(--accent-dark);
+    color: white;
+}
+
+.ctaSection h2 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.ctaSection p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+}
+
+.ctaButton {
+    background-color: var(--primary-main);
+    color: var(--text-on-primary);
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+    display: inline-block;
+}
+
+.ctaButton:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+}
