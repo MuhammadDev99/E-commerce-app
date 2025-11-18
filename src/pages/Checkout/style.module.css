@@ -46,7 +46,6 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
-    /* KEY FIX #1: Allows flex items to shrink below their content size. */
 }
 
 .formGroup label {
@@ -73,7 +72,6 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    /* KEY FIX #2: Allows fields to wrap onto the next line if space is tight. */
 }
 
 /* A more robust flex definition for each field */

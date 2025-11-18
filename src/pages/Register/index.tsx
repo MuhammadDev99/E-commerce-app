@@ -1,5 +1,5 @@
 import AuthForm from "../../components/AuthForm";
-import styles from "../../components/AuthForm/style.module.css"; // We reuse the same styles
+import styles from "../../components/AuthForm/style.module.css";
 import { API_BASE } from "../../constants";
 interface RegistrationData {
     fullName: string;
