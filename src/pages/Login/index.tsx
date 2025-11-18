@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/AuthForm";
 import styles from "../../components/AuthForm/style.module.css";
 import { API_BASE } from "../../constants";
-
+import { login } from "../../utils";
 interface LoginData {
     email: string;
     password: string;
@@ -13,16 +13,6 @@ interface LoginData {
 export default function Login() {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-    const [csrfToken, setCsrfToken] = useState<string>("");
-
-    // Get CSRF token on mount
-    useEffect(() => {
-        fetch(`${API_BASE}/csrf-token`, { credentials: "include" })
-            .then(res => res.json())
-            .then(data => setCsrfToken(data.csrfToken))
-            .catch(err => console.error("CSRF fetch error:", err));
-    }, []);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -30,36 +20,9 @@ export default function Login() {
         setLoading(true);
 
         const formData = new FormData(event.currentTarget);
-        const loginData: LoginData = {
-            email: formData.get("email") as string,
-            password: formData.get("password") as string,
-        };
-
-        try {
-            const response = await fetch(`${API_BASE}/login`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(loginData),
-                credentials: "include", // Essential: includes cookies
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                console.log("Login successful!", data);
-                // User data is in response, token is in httpOnly cookie
-                localStorage.setItem("user", JSON.stringify(data.user));
-                navigate("/dashboard");
-            } else {
-                setError(data.error || "Login failed");
-            }
-        } catch (err) {
-            setError("Network error. Please try again.");
-        } finally {
-            setLoading(false);
-        }
+        const { response, error } = await login(formData.get("email") as string, formData.get("password") as string);
+        setError(error);
+        setLoading(false);
     };
 
     return (

@@ -39,7 +39,7 @@ function NavigationBar() {
     return (
         <div className={`${styles.navigationBar} ${!visible ? styles.hidden : ""}`}>
             <div className={styles.logo}>
-                <a><img src="/images/logo-vertical.png"></img></a>
+                <a href="/"><img src="/images/logo-vertical.png"></img></a>
             </div>
             <div className={styles.buttons}>
                 <NavigationBarButton label="Products" href="/products" />
