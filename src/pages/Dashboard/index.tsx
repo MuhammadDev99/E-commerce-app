@@ -5,23 +5,19 @@ import type { User } from "../../types";
 import { showMessage } from "../../signals/messageSignal";
 
 
-async function fetchWithAuth(url: string, options = {}) {
-    const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
-
-    const headers = {
-        'Content-Type': 'application/json',
-        ...options.headers,
-    };
-
-    if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
-    }
-
-    const response = await fetch(url, { ...options, headers, credentials: 'include' });
+async function fetchWithAuth(url: string, options: RequestInit = {}) {
+    const response = await fetch(url, {
+        ...options,
+        credentials: 'include', // ← this sends the httpOnly cookie automatically
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers,
+        },
+    });
 
     if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "An error occurred");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || response.statusText || 'An error occurred');
     }
 
     return response.json();

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.css";
 import CartButton from "./CartButton";
-
+import { getUserLocalStorage } from "../utils";
+import type { User } from "../types";
 interface NavigationBarButtonProps {
     label: string;
     href: string;
@@ -16,6 +17,8 @@ function NavigationBarButton({ label, href }: NavigationBarButtonProps) {
 }
 
 function NavigationBar() {
+    const user: User | null = getUserLocalStorage();
+    const isAuthenticated = user !== null;
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
 
@@ -43,7 +46,7 @@ function NavigationBar() {
                 <NavigationBarButton label="Home" href="/" />
                 <NavigationBarButton label="About" href="/about" />
                 <NavigationBarButton label="Contact" href="/contact" />
-                <NavigationBarButton label="Login" href="/login" />
+                {isAuthenticated ? <NavigationBarButton label="Dashboard" href="/dashboard" /> : <NavigationBarButton label="Login" href="/login" />}
                 <CartButton itemsCount={0} />
             </div>
         </div>
