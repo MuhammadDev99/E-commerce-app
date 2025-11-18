@@ -3,7 +3,7 @@ import styles from "./style.module.css";
 import { LOCAL_STORAGE_USER_KEY, API_BASE } from "../../constants";
 import type { User } from "../../types";
 import { showMessage } from "../../signals/messageSignal";
-
+import { getUserLocalStorage, logout, updateFullName, fetchUser, updatePassword } from "../../utils";
 
 async function fetchWithAuth(url: string, options: RequestInit = {}) {
     const response = await fetch(url, {
@@ -34,43 +34,14 @@ function Dashboard() {
     const [passwordsDoNotMatch, setPasswordsDoNotMatch] = useState(false);
 
     useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const userData = await fetchWithAuth(`${API_BASE}/me`);
-                setUser(userData);
-                setNameInputValue(userData.fullName);
-            } catch (error) {
-                console.error("Failed to fetch user:", error);
-                // Redirect to login if not authenticated
-                window.location.href = "/login";
-            }
-        };
-        fetchUser();
+        setUser(getUserLocalStorage());
     }, []);
 
     const handleSaveNameClick = async () => {
         if (nameInputValue.trim() && user) {
-            try {
-                const updatedUser = await fetchWithAuth(`${API_BASE}/update-name`, {
-                    method: 'PUT',
-                    body: JSON.stringify({ fullName: nameInputValue }),
-                });
-                setUser(updatedUser.user);
-                setIsEditingName(false);
-                showMessage({
-                    title: 'Profile Updated',
-                    content: 'Your name has been successfully updated.',
-                    type: 'success',
-                    duration: 3000
-                });
-            } catch (error) {
-                showMessage({
-                    title: 'Error',
-                    content: error.message,
-                    type: 'error',
-                    duration: 3000
-                });
-            }
+            const updatedUser = await updateFullName(nameInputValue);
+            setUser(updatedUser);
+            setIsEditingName(false);
         }
     };
 
@@ -93,41 +64,13 @@ function Dashboard() {
             });
             return;
         }
-
-        try {
-            await fetchWithAuth(`${API_BASE}/update-password`, {
-                method: 'PUT',
-                body: JSON.stringify({ currentPassword, newPassword }),
-            });
-            showMessage({
-                title: 'Password Changed',
-                content: 'Your password has been successfully updated.',
-                type: 'success',
-                duration: 3000
-            });
-            setCurrentPassword("");
-            setNewPassword("");
-            setConfirmPassword("");
-            setPasswordsDoNotMatch(false);
-        } catch (error) {
-            showMessage({
-                title: 'Error',
-                content: error.message,
-                type: 'error',
-                duration: 3000
-            });
-        }
+        const error = await updatePassword(currentPassword, newPassword);
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+        setPasswordsDoNotMatch(false);
     };
 
-    const handleLogout = async () => {
-        try {
-            await fetchWithAuth(`${API_BASE}/logout`, { method: 'POST' });
-            localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
-            window.location.href = "/login";
-        } catch (error) {
-            console.error("Logout failed:", error);
-        }
-    };
 
     if (!user) {
         return <div>Loading...</div>;
@@ -221,7 +164,7 @@ function Dashboard() {
 
                     <section className={styles.card}>
                         <h2>Actions</h2>
-                        <button onClick={handleLogout} className={styles.buttonDanger}>
+                        <button onClick={logout} className={styles.buttonDanger}>
                             Logout
                         </button>
                     </section>

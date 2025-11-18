@@ -28,4 +28,5 @@ interface Comment { stars: number; title: string; comment: string; }
 interface Product { id: number; title: string; description: string; price: number; stars: number; discountPercentage: number; comments: Comment[]; image: string; }
 interface User { id: number; email: string; fullName: string; cartProducts: Product[]; }
 
-export type { Comment, Product, messageType, message, AuthMode, User }
+interface PromiseResult { response: any; error: any; }
+export type { Comment, Product, messageType, message, AuthMode, User, PromiseResult }
