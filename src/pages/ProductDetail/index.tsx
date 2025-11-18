@@ -13,15 +13,13 @@ const products = signal<Product[]>([]);
 
 function ProductDetail() {
     const { productId } = useParams();
-    if (products.value.length === 0) {
-        getProducts().then((data) => {
-            products.value = data;
-        });
-    }
     useEffect(() => {
-        getProducts().then((data) => {
-            products.value = data;
-        });
+        // Only fetch if we really don't have data
+        if (products.value.length === 0) {
+            getProducts().then((data) => {
+                products.value = data;
+            });
+        }
     }, []);
 
     const product: Product = products.value.find((product) => product.id === Number(productId)) as Product;
