@@ -4,7 +4,8 @@ import CartButton from "./CartButton";
 import { getUserLocalStorage } from "../utils";
 import type { User } from "../types";
 import { cart } from "../signals/cartSignal";
-
+import { Link } from "react-router-dom";
+import { logoVertical } from "../assets/images";
 interface NavigationBarButtonProps {
     label: string;
     href: string;
@@ -13,7 +14,7 @@ interface NavigationBarButtonProps {
 function NavigationBarButton({ label, href }: NavigationBarButtonProps) {
     return (
         <div className={styles.navigationBarButton}>
-            <a href={href}>{label}</a>
+            <Link to={href}>{label}</Link >
         </div>
     );
 }
@@ -41,7 +42,7 @@ function NavigationBar() {
     return (
         <div className={`${styles.navigationBar} ${!visible ? styles.hidden : ""}`}>
             <div className={styles.logo}>
-                <a href="/"><img src="/images/logo-vertical.png"></img></a>
+                <Link to="/"><img src={logoVertical}></img></Link >
             </div>
             <div className={styles.buttons}>
                 <NavigationBarButton label="Products" href="/products" />

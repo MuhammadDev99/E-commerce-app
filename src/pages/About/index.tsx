@@ -1,7 +1,7 @@
 import styles from "./style.module.css";
 import { SHOP_NAME } from "../../constants";
 import { Link } from "react-router-dom";
-
+import { workshop, teamMember1, teamMember2, teamMember3 } from "../../assets/images";
 function About() {
     return (
         <div className={styles.aboutPage}>
@@ -21,7 +21,7 @@ function About() {
             {/* --- Our Story Section --- */}
             <section className={`${styles.contentSection} ${styles.storySection}`}>
                 <div className={styles.storyImage}>
-                    <img src="/images/workshop.jpeg" alt="A craftsman's workshop" />
+                    <img src={workshop} />
                 </div>
                 <div className={styles.storyText}>
                     <h2>The Journey of {SHOP_NAME}</h2>
@@ -61,17 +61,17 @@ function About() {
                 <h2 className={styles.sectionTitle}>Meet the Makers</h2>
                 <div className={styles.teamGrid}>
                     <div className={styles.teamMember}>
-                        <img src="/images/team-member-1.png" alt="Founder Jane Doe" />
+                        <img src={teamMember1} alt="Founder Jane Doe" />
                         <h3>Jane Doe</h3>
                         <p>Founder & Chief Curator</p>
                     </div>
                     <div className={styles.teamMember}>
-                        <img src="/images/team-member-2.png" alt="Head of Design John Smith" />
+                        <img src={teamMember2} />
                         <h3>John Smith</h3>
                         <p>Head of Design</p>
                     </div>
                     <div className={styles.teamMember}>
-                        <img src="/images/team-member-3.png" alt="Customer Happiness Lead Emily Jones" />
+                        <img src={teamMember3} alt="Customer Happiness Lead Emily Jones" />
                         <h3>Emily Jones</h3>
                         <p>Customer Happiness</p>
                     </div>

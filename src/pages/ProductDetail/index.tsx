@@ -8,7 +8,7 @@ import { addToCart } from "../../signals/cartSignal";
 import { useEffect } from "react";
 import Stars from "../Products/Stars";
 import { showMessage } from "../../signals/messageSignal"; // Import showMessage
-
+import { cat } from "../../assets/images";
 const products = signal<Product[]>([]);
 
 function ProductDetail() {
@@ -29,7 +29,7 @@ function ProductDetail() {
     if (!product) {
         return (
             <div className={styles.notFoundContainer}>
-                <img className={styles.notFoundImage} src="/images/cat.png" alt="Not Found" />
+                <img className={styles.notFoundImage} src={cat} alt="Not Found" />
                 <p className={styles.notFoundText}>Product not found</p>
             </div>
         );

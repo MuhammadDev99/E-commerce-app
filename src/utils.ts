@@ -1,6 +1,7 @@
 import { API_BASE, LOCAL_STORAGE_USER_KEY } from "./constants"
 import type { Product, User, PromiseResult } from "./types"
 import { showMessage } from "./signals/messageSignal"
+const BASE_URL = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 
 async function fetchWithAuth(url: string, options: RequestInit = {}): Promise<PromiseResult> {
@@ -52,7 +53,7 @@ async function logout() {
     const { error } = await fetchWithAuth(`${API_BASE}/logout`, { method: 'POST' });
     if (!error) {
         localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
-        window.location.href = "/login";
+        window.location.href = `${BASE_URL}/login`;
     } else {
         console.error("Logout failed:", error);
         showMessage({ title: 'Error', content: error, type: 'error', duration: 3000 });
@@ -99,7 +100,7 @@ async function login(email: string, password: string): Promise<PromiseResult> {
     } else {
         const user = (await response.json()).user;
         localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(user));
-        window.location.href = "/dashboard";
+        window.location.href = `${BASE_URL}/dashboard`;
         showMessage({ title: 'Success', content: `Welcome, ${user.fullName}`, type: 'success', duration: 3000 });
     }
 

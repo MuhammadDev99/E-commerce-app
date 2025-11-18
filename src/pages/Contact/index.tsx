@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from "./style.module.css";
 import { showMessage } from '../../signals/messageSignal';
+import { Link } from 'react-router-dom';
 
 function Contact() {
     const [name, setName] = useState('');
@@ -57,7 +58,7 @@ function Contact() {
                     </p>
                     <p>
                         <strong>Email:</strong><br />
-                        <a href="mailto:hello@sparkyshop.com">hello@sparkyshop.com</a>
+                        <Link to="mailto:hello@sparkyshop.com">hello@sparkyshop.com</Link>
                     </p>
                     <p>
                         <strong>Phone:</strong><br />

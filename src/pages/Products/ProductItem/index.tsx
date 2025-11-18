@@ -2,6 +2,7 @@ import type { Product } from "../../../types";
 import Stars from "../Stars";
 import styles from "./style.module.css";
 import { addToCart } from "../../../signals/cartSignal";
+import { Link } from "react-router-dom";
 
 function ProductItem({ product }: { product: Product }) {
     const titleRegex = /'([^']*)'/;
@@ -25,7 +26,7 @@ function ProductItem({ product }: { product: Product }) {
     }
     return (
         <div className={styles.product}>
-            <a href={`/products/${product.id}`}>
+            <Link to={`/products/${product.id}`}>
                 <div className={styles.productImageWrapper}>
                     <img className={styles.productImage} src={product.image} alt={product.title} />
                 </div>
@@ -40,7 +41,7 @@ function ProductItem({ product }: { product: Product }) {
                         <button onClick={(e) => { e.preventDefault(); addToCart(product); }} className={styles.addToCart}>Add to cart</button>
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>
     );
 }
