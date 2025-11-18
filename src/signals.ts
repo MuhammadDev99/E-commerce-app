@@ -1,6 +1,6 @@
 import { signal } from "@preact/signals-react";
-import type { product } from "./types";
+import type { Product } from "./types";
 
-const products = signal<product[]>([])
+const products = signal<Product[]>([])
 
 export { products }

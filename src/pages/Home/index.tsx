@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { signal } from "@preact/signals-react";
 import styles from "./style.module.css";
 import { getProducts } from '../../utils';
-import type { product } from '../../types';
+import type { Product } from '../../types';
 import ProductItem from '../Products/ProductItem';
 import { SHOP_NAME } from '../../constants';
 import { Link } from 'react-router-dom';
 
-const featuredProducts = signal<product[]>([]);
+const featuredProducts = signal<Product[]>([]);
 
 function Home() {
     useEffect(() => {
