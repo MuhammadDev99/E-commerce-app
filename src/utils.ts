@@ -2,6 +2,7 @@ import { API_BASE, LOCAL_STORAGE_USER_KEY } from "./constants"
 import type { Product, User, PromiseResult } from "./types"
 import { showMessage } from "./signals/messageSignal"
 
+
 async function fetchWithAuth(url: string, options: RequestInit = {}): Promise<PromiseResult> {
     const response = await fetch(url, {
         ...options,
@@ -37,10 +38,6 @@ async function getProducts(): Promise<Product[]> {
     const products = await response.json()
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(products))
     return products as Product[]
-}
-
-function addToCart(product: Product) {
-
 }
 
 function getUserLocalStorage(): User | null {
@@ -109,4 +106,4 @@ async function login(email: string, password: string): Promise<PromiseResult> {
     return { response, error }
 }
 
-export { getProducts, addToCart, getUserLocalStorage, logout, updateFullName, fetchUser, updatePassword, login }
+export { getProducts, getUserLocalStorage, logout, updateFullName, fetchUser, updatePassword, login }

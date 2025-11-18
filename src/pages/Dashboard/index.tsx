@@ -4,28 +4,13 @@ import { LOCAL_STORAGE_USER_KEY, API_BASE } from "../../constants";
 import type { User } from "../../types";
 import { showMessage } from "../../signals/messageSignal";
 import { getUserLocalStorage, logout, updateFullName, fetchUser, updatePassword } from "../../utils";
+import { signal } from "@preact/signals-react";
 
-async function fetchWithAuth(url: string, options: RequestInit = {}) {
-    const response = await fetch(url, {
-        ...options,
-        credentials: 'include', // ← this sends the httpOnly cookie automatically
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers,
-        },
-    });
 
-    if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || response.statusText || 'An error occurred');
-    }
-
-    return response.json();
-}
-
+const user = signal<User | null>(getUserLocalStorage());
 // --- Component Function ---
 function Dashboard() {
-    const [user, setUser] = useState<User | null>(null);
+    /* const [user, setUser] = useState<User | null>(null); */
     const [isEditingName, setIsEditingName] = useState(false);
     const [nameInputValue, setNameInputValue] = useState("");
     const [currentPassword, setCurrentPassword] = useState("");
@@ -34,13 +19,13 @@ function Dashboard() {
     const [passwordsDoNotMatch, setPasswordsDoNotMatch] = useState(false);
 
     useEffect(() => {
-        setUser(getUserLocalStorage());
-    }, []);
+        setNameInputValue(user.value?.fullName || "");
+    }, [user.value]);
 
     const handleSaveNameClick = async () => {
         if (nameInputValue.trim() && user) {
             const updatedUser = await updateFullName(nameInputValue);
-            setUser(updatedUser);
+            user.value = updatedUser;
             setIsEditingName(false);
         }
     };
@@ -80,7 +65,7 @@ function Dashboard() {
         <main className={styles.dashboard}>
             <div className={styles.container}>
                 <header className={styles.header}>
-                    <h1>Welcome back, {user.fullName}</h1>
+                    <h1>Welcome back, {user.value?.fullName}</h1>
                     <p>Manage your profile and security settings.</p>
                 </header>
 
@@ -104,7 +89,7 @@ function Dashboard() {
                                     </>
                                 ) : (
                                     <>
-                                        <span>{user.fullName}</span>
+                                        <span>{user.value?.fullName}</span>
                                         <button onClick={() => setIsEditingName(true)} className={styles.buttonSecondary}>
                                             Change Name
                                         </button>

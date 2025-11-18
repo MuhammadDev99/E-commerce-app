@@ -2,7 +2,9 @@ import { signal } from "@preact/signals-react";
 import styles from "./style.module.css";
 import { useParams } from 'react-router-dom';
 import type { Product } from "../../types";
-import { addToCart, getProducts } from "../../utils";
+import { getProducts } from "../../utils";
+import { addToCart } from "../../signals/cartSignal";
+
 import { useEffect } from "react";
 import Stars from "../Products/Stars";
 import { showMessage } from "../../signals/messageSignal"; // Import showMessage
@@ -52,12 +54,6 @@ function ProductDetail() {
 
     const handleAddToCart = () => {
         addToCart(product);
-        showMessage({
-            title: 'Success!',
-            content: `${product.title} has been added to your cart.`,
-            type: 'success',
-            duration: 3000 // 3 seconds
-        });
     };
 
     return (

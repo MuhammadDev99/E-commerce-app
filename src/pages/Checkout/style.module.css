@@ -1,0 +1,116 @@
+.checkoutContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 1rem;
+    min-height: 80vh;
+    background-color: #f4f7f6;
+    font-family: sans-serif;
+}
+
+.checkoutCard {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin: 0 0 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+}
+
+.subtitle strong {
+    color: #c0392b;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    /* KEY FIX #1: Allows flex items to shrink below their content size. */
+}
+
+.formGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.formGroup input {
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formGroup input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.formRow {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    /* KEY FIX #2: Allows fields to wrap onto the next line if space is tight. */
+}
+
+/* A more robust flex definition for each field */
+.cardGroup {
+    flex: 3 1 250px;
+    /* Will grow 3x, shrink, with a base width of 250px */
+}
+
+.expiryGroup {
+    flex: 2 1 120px;
+    /* Will grow 2x, shrink, with a base width of 120px */
+}
+
+.cvcGroup {
+    flex: 1 1 80px;
+    /* Will grow 1x, shrink, with a base width of 80px */
+}
+
+.confirmButton {
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2ecc71;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.confirmButton:hover:not(:disabled) {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
+
+.confirmButton:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}

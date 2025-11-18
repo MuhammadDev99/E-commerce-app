@@ -7,19 +7,21 @@ function About() {
         <div className={styles.aboutPage}>
             {/* --- Hero Section --- */}
             <header className={styles.hero}>
-                <div className={styles.heroOverlay}></div>
+                {/* Text content comes first now */}
                 <div className={styles.heroContent}>
                     <h1 className={styles.heroTitle}>Crafting 'Spark' Into Everyday Life</h1>
                     <p className={styles.heroSubtitle}>
                         {SHOP_NAME} is more than a store. It's a curated collection of unique items designed to bring joy and inspiration into your home.
                     </p>
                 </div>
+                {/* This div is now just for the image */}
+                <div className={styles.heroOverlay}></div>
             </header>
 
             {/* --- Our Story Section --- */}
             <section className={`${styles.contentSection} ${styles.storySection}`}>
                 <div className={styles.storyImage}>
-                    <img src="/images/workshop.jpg" alt="A craftsman's workshop" />
+                    <img src="/images/workshop.jpeg" alt="A craftsman's workshop" />
                 </div>
                 <div className={styles.storyText}>
                     <h2>The Journey of {SHOP_NAME}</h2>

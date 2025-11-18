@@ -10,6 +10,8 @@ import ProductDetail from "./pages/ProductDetail/index.tsx";
 import Cart from "./pages/Cart/index.tsx";
 import Register from "./pages/Register/index.tsx";
 import Dashboard from "./pages/Dashboard/index.tsx";
+import Checkout from './pages/Checkout/index.tsx';
+
 function App() {
     return (
         <BrowserRouter>
@@ -24,6 +26,7 @@ function App() {
                     <Route path="register" element={<Register />} />
                     <Route path="products/:productId" element={<ProductDetail />} />
                     <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="checkout" element={<Checkout />} />
                 </Route>
             </Routes>
         </BrowserRouter>

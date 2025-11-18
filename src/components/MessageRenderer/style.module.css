@@ -1,7 +1,7 @@
 .rendererContainer {
     /* Positions the entire stack at the top-right */
     position: fixed;
-    top: 20px;
+    top: 100px;
     right: 20px;
     z-index: 1000;
 

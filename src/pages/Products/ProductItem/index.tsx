@@ -1,7 +1,8 @@
 import type { Product } from "../../../types";
 import Stars from "../Stars";
 import styles from "./style.module.css";
-import { addToCart } from "../../../utils";
+import { addToCart } from "../../../signals/cartSignal";
+
 function ProductItem({ product }: { product: Product }) {
     const titleRegex = /'([^']*)'/;
     const match = product.title.match(titleRegex);
@@ -36,7 +37,7 @@ function ProductItem({ product }: { product: Product }) {
                     </div>
                     <div>
                         <p className={styles.productPrice}>{product.price}$</p>
-                        <button onClick={() => addToCart(product)} className={styles.addToCart}>Add to cart</button>
+                        <button onClick={(e) => { e.preventDefault(); addToCart(product); }} className={styles.addToCart}>Add to cart</button>
                     </div>
                 </div>
             </a>

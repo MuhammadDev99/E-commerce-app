@@ -3,6 +3,8 @@ import styles from "./style.module.css";
 import CartButton from "./CartButton";
 import { getUserLocalStorage } from "../utils";
 import type { User } from "../types";
+import { cart } from "../signals/cartSignal";
+
 interface NavigationBarButtonProps {
     label: string;
     href: string;
@@ -47,7 +49,7 @@ function NavigationBar() {
                 <NavigationBarButton label="About" href="/about" />
                 <NavigationBarButton label="Contact" href="/contact" />
                 {isAuthenticated ? <NavigationBarButton label="Dashboard" href="/dashboard" /> : <NavigationBarButton label="Login" href="/login" />}
-                <CartButton itemsCount={0} />
+                <CartButton itemsCount={cart.value.length} />
             </div>
         </div>
     );
