@@ -1,113 +1,147 @@
-import { signal } from "@preact/signals-react";
+import { useState, useEffect } from "react";
 import styles from "./style.module.css";
-import { LOCAL_STORAGE_USER_KEY } from "../../constants";
-import { useEffect } from "react";
+import { LOCAL_STORAGE_USER_KEY, API_BASE } from "../../constants";
 import type { User } from "../../types";
 import { showMessage } from "../../signals/messageSignal";
 
-// --- State Management with Signals ---
-const userFullName = signal<string>("");
-const isEditingName = signal<boolean>(false);
-const nameInputValue = signal<string>("");
-const newPassword = signal<string>("");
-const confirmPassword = signal<string>("");
-// --- NEW: Signal to track password match state ---
-const passwordsDoNotMatch = signal<boolean>(false);
 
-// --- Data Fetching Logic ---
-async function getUserFullName() {
-    const userRaw = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
-    const user = userRaw ? (JSON.parse(userRaw) as User) : null;
-    if (user && user.fullName) {
-        userFullName.value = user.fullName;
-        nameInputValue.value = user.fullName;
+async function fetchWithAuth(url: string, options = {}) {
+    const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
+
+    const headers = {
+        'Content-Type': 'application/json',
+        ...options.headers,
+    };
+
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
     }
+
+    const response = await fetch(url, { ...options, headers, credentials: 'include' });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "An error occurred");
+    }
+
+    return response.json();
 }
 
 // --- Component Function ---
 function Dashboard() {
+    const [user, setUser] = useState<User | null>(null);
+    const [isEditingName, setIsEditingName] = useState(false);
+    const [nameInputValue, setNameInputValue] = useState("");
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [passwordsDoNotMatch, setPasswordsDoNotMatch] = useState(false);
+
     useEffect(() => {
-        getUserFullName();
+        const fetchUser = async () => {
+            try {
+                const userData = await fetchWithAuth(`${API_BASE}/me`);
+                setUser(userData);
+                setNameInputValue(userData.fullName);
+            } catch (error) {
+                console.error("Failed to fetch user:", error);
+                // Redirect to login if not authenticated
+                window.location.href = "/login";
+            }
+        };
+        fetchUser();
     }, []);
 
-    // --- Event Handlers ---
-    const handleEditNameClick = () => {
-        isEditingName.value = true;
-    };
-
-    const handleSaveNameClick = () => {
-        if (nameInputValue.value.trim()) {
-            userFullName.value = nameInputValue.value;
-            const userRaw = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
-            const user = userRaw ? (JSON.parse(userRaw) as User) : { fullName: "" };
-            user.fullName = nameInputValue.value;
-            localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(user));
-
-            showMessage({
-                title: 'Profile Updated',
-                content: 'Your name has been successfully updated.',
-                type: 'success',
-                duration: 3000
-            });
+    const handleSaveNameClick = async () => {
+        if (nameInputValue.trim() && user) {
+            try {
+                const updatedUser = await fetchWithAuth(`${API_BASE}/update-name`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ fullName: nameInputValue }),
+                });
+                setUser(updatedUser.user);
+                setIsEditingName(false);
+                showMessage({
+                    title: 'Profile Updated',
+                    content: 'Your name has been successfully updated.',
+                    type: 'success',
+                    duration: 3000
+                });
+            } catch (error) {
+                showMessage({
+                    title: 'Error',
+                    content: error.message,
+                    type: 'error',
+                    duration: 3000
+                });
+            }
         }
-        isEditingName.value = false;
     };
 
-    // --- NEW: Handler for real-time validation on the confirm password input ---
-    const handleConfirmPasswordInput = (e: React.FormEvent<HTMLInputElement>) => {
-        confirmPassword.value = (e.target as HTMLInputElement).value;
-        // Update the validation state in real-time
-        passwordsDoNotMatch.value = newPassword.value !== confirmPassword.value;
+    const handleConfirmPasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        setConfirmPassword(value);
+        setPasswordsDoNotMatch(newPassword !== value);
     };
 
-    const handlePasswordSubmit = (e: React.FormEvent) => {
+    const handlePasswordSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Final check on submit
-        if (newPassword.value !== confirmPassword.value) {
+        if (newPassword !== confirmPassword) {
+            setPasswordsDoNotMatch(true);
             showMessage({
                 title: 'Error',
                 content: 'Passwords do not match. Please try again.',
                 type: 'error',
                 duration: 3000
             });
-            passwordsDoNotMatch.value = true; // Ensure error state is set
             return;
         }
-        if (newPassword.value.length < 6) {
+
+        try {
+            await fetchWithAuth(`${API_BASE}/update-password`, {
+                method: 'PUT',
+                body: JSON.stringify({ currentPassword, newPassword }),
+            });
+            showMessage({
+                title: 'Password Changed',
+                content: 'Your password has been successfully updated.',
+                type: 'success',
+                duration: 3000
+            });
+            setCurrentPassword("");
+            setNewPassword("");
+            setConfirmPassword("");
+            setPasswordsDoNotMatch(false);
+        } catch (error) {
             showMessage({
                 title: 'Error',
-                content: 'Password must be at least 6 characters long.',
+                content: error.message,
                 type: 'error',
                 duration: 3000
             });
-            return;
         }
-
-        console.log("Password changed to:", newPassword.value);
-        showMessage({
-            title: 'Password Changed',
-            content: 'Your password has been successfully updated.',
-            type: 'success',
-            duration: 3000
-        });
-
-        // --- MODIFIED: Reset form and validation state ---
-        newPassword.value = "";
-        confirmPassword.value = "";
-        passwordsDoNotMatch.value = false;
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
-        window.location.href = "/login";
+    const handleLogout = async () => {
+        try {
+            await fetchWithAuth(`${API_BASE}/logout`, { method: 'POST' });
+            localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+            window.location.href = "/login";
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
     };
+
+    if (!user) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <main className={styles.dashboard}>
             <div className={styles.container}>
                 <header className={styles.header}>
-                    <h1>Welcome back, {userFullName}</h1>
+                    <h1>Welcome back, {user.fullName}</h1>
                     <p>Manage your profile and security settings.</p>
                 </header>
 
@@ -117,12 +151,12 @@ function Dashboard() {
                         <div className={styles.formGroup}>
                             <label>Full Name</label>
                             <div className={styles.nameEditContainer}>
-                                {isEditingName.value ? (
+                                {isEditingName ? (
                                     <>
                                         <input
                                             type="text"
-                                            value={nameInputValue.value}
-                                            onInput={(e) => (nameInputValue.value = (e.target as HTMLInputElement).value)}
+                                            value={nameInputValue}
+                                            onChange={(e) => setNameInputValue(e.target.value)}
                                             className={styles.input}
                                         />
                                         <button onClick={handleSaveNameClick} className={styles.buttonPrimary}>
@@ -131,8 +165,8 @@ function Dashboard() {
                                     </>
                                 ) : (
                                     <>
-                                        <span>{userFullName}</span>
-                                        <button onClick={handleEditNameClick} className={styles.buttonSecondary}>
+                                        <span>{user.fullName}</span>
+                                        <button onClick={() => setIsEditingName(true)} className={styles.buttonSecondary}>
                                             Change Name
                                         </button>
                                     </>
@@ -145,12 +179,24 @@ function Dashboard() {
                         <h2>Security Settings</h2>
                         <form onSubmit={handlePasswordSubmit} className={styles.form}>
                             <div className={styles.formGroup}>
+                                <label htmlFor="currentPassword">Current Password</label>
+                                <input
+                                    id="currentPassword"
+                                    type="password"
+                                    value={currentPassword}
+                                    onChange={(e) => setCurrentPassword(e.target.value)}
+                                    placeholder="Enter current password"
+                                    className={styles.input}
+                                    required
+                                />
+                            </div>
+                            <div className={styles.formGroup}>
                                 <label htmlFor="newPassword">New Password</label>
                                 <input
                                     id="newPassword"
                                     type="password"
-                                    value={newPassword.value}
-                                    onInput={(e) => (newPassword.value = (e.target as HTMLInputElement).value)}
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
                                     placeholder="Enter new password"
                                     className={styles.input}
                                     required
@@ -158,18 +204,16 @@ function Dashboard() {
                             </div>
                             <div className={styles.formGroup}>
                                 <label htmlFor="confirmPassword">Confirm Password</label>
-                                {/* --- MODIFIED: Added conditional error class --- */}
                                 <input
                                     id="confirmPassword"
                                     type="password"
-                                    value={confirmPassword.value}
-                                    onInput={handleConfirmPasswordInput} // Use the new handler
+                                    value={confirmPassword}
+                                    onChange={handleConfirmPasswordInput}
                                     placeholder="Confirm new password"
-                                    className={`${styles.input} ${passwordsDoNotMatch.value ? styles.inputError : ""}`}
+                                    className={`${styles.input} ${passwordsDoNotMatch ? styles.inputError : ""}`}
                                     required
                                 />
-                                {/* --- NEW: Conditionally render an error message --- */}
-                                {passwordsDoNotMatch.value && confirmPassword.value && (
+                                {passwordsDoNotMatch && confirmPassword && (
                                     <p className={styles.errorMessage}>Passwords do not match.</p>
                                 )}
                             </div>

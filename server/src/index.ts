@@ -179,6 +179,72 @@ app.post("/logout", (req, res) => {
 });
 
 
+// Add this to your server file
+// Add this to your server file
 
+app.put("/update-name", authenticateToken, async (req, res) => {
+    try {
+        const userId = (req as any).user.userId;
+        const { fullName } = req.body;
+
+        if (!fullName) {
+            return res.status(400).json({ error: "Full name is required" });
+        }
+
+        const result = await pool.query(
+            "UPDATE users SET full_name = $1 WHERE id = $2 RETURNING id, email, full_name, cart_products",
+            [fullName, userId]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const user = result.rows[0];
+        res.json({
+            message: "Name updated successfully",
+            user: { id: user.id, email: user.email, fullName: user.full_name, cartProducts: user.cart_products }
+        });
+    } catch (error) {
+        console.error("Update name error:", error);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+app.put("/update-password", authenticateToken, async (req, res) => {
+    try {
+        const userId = (req as any).user.userId;
+        const { currentPassword, newPassword } = req.body;
+
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({ error: "Current and new passwords are required" });
+        }
+
+        if (newPassword.length < 6) {
+            return res.status(400).json({ error: "New password must be at least 6 characters long" });
+        }
+
+        const result = await pool.query("SELECT password_hash FROM users WHERE id = $1", [userId]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const user = result.rows[0];
+        const validPassword = await bcrypt.compare(currentPassword, user.password_hash);
+
+        if (!validPassword) {
+            return res.status(401).json({ error: "Invalid current password" });
+        }
+
+        const hash = await bcrypt.hash(newPassword, 10);
+        await pool.query("UPDATE users SET password_hash = $1 WHERE id = $2", [hash, userId]);
+
+        res.json({ message: "Password updated successfully" });
+    } catch (error) {
+        console.error("Update password error:", error);
+        res.status(500).json({ error: "Server error" });
+    }
+});
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
