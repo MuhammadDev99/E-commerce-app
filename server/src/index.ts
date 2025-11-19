@@ -46,7 +46,7 @@ const app = express();
 app.use(cors({
     origin: isProduction
         ? ["https://muhammad.developer.li", "http://localhost:5173", "http://192.168.0.104:5173"]
-        : ["http://localhost:5173", "http://localhost:3333"],
+        : ["http://localhost:5173", "http://localhost:3333", "http://192.168.0.104:5173"],
     credentials: true,
 }));
 
