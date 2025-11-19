@@ -1,8 +1,8 @@
 import { cart, removeFromCart, clearCart } from "../../signals/cartSignal";
 import styles from "./style.module.css";
 import { Link, useNavigate } from "react-router-dom";
-
 function Cart() {
+    const navigate = useNavigate();
     const productsInCart = cart.value;
 
     const calculateSubtotal = () => {
@@ -59,7 +59,7 @@ function Cart() {
                         <span>Total</span>
                         <span>${calculateSubtotal()}</span>
                     </div>
-                    <button onClick={() => window.location.href = "/checkout"} className={styles.checkoutButton}>Proceed to Checkout</button>
+                    <button onClick={() => { navigate("/checkout"); }} className={styles.checkoutButton}>Proceed to Checkout</button>
                 </div>
             </div>
         </div>
