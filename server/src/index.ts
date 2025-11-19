@@ -8,10 +8,16 @@ import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import csrf from "csurf";
 import dotenv from "dotenv";
+import https from "https";
+import http from "http"; // Import HTTP for dev server
 
 dotenv.config({ path: path.join(__dirname, "../.env"), quiet: true });
 
-// Initialize PostgreSQL
+// 1. Determine Environment
+const isProduction = process.env.NODE_ENV === "production";
+const PORT = isProduction ? 443 : (process.env.PORT || 3333);
+
+// 2. Initialize PostgreSQL
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
@@ -22,26 +28,38 @@ interface Product { id: number; title: string; description: string; price: numbe
 interface User { id: number; email: string; fullName: string; cartProducts: Product[]; }
 interface UserDB { id: number; email: string; password_hash: string; full_name: string; cart_products: Product[]; }
 
-const API_BASE = `http://localhost:${process.env.PORT || 3333}`;
+// 3. Dynamic API Base URL
+// If prod: https://muhammad.developer.li (no port needed for 443)
+// If dev: http://localhost:3333
+const API_BASE = isProduction
+    ? "https://muhammad.developer.li"
+    : `http://localhost:${PORT}`;
+
 const data = fs.readFileSync(path.join(__dirname, "../assets/products/products.json"), "utf-8");
-const products: Product[] = (JSON.parse(data) as Product[]).map(p => ({ ...p, image: `${API_BASE}/assets/products/product-images/${p.id}.jpeg` }));
+const products: Product[] = (JSON.parse(data) as Product[]).map(p => ({
+    ...p,
+    image: `${API_BASE}/assets/products/product-images/${p.id}.jpeg`
+}));
 
 const app = express();
 
-// Middleware
+// 4. Middleware
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true, // Allow cookies
+    origin: isProduction
+        ? ["https://muhammad.developer.li"]
+        : ["http://localhost:5173", "http://localhost:3333"],
+    credentials: true,
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/assets", express.static(path.join(__dirname, "../assets")));
 
-// CSRF Protection
+// 5. Dynamic CSRF Protection
 const csrfProtection = csrf({
     cookie: {
         httpOnly: true,
-        secure: false, // Set true in production with HTTPS
+        secure: isProduction, // False in Dev (HTTP), True in Prod (HTTPS)
         sameSite: 'lax'
     }
 });
@@ -49,10 +67,7 @@ const csrfProtection = csrf({
 // JWT Middleware
 const authenticateToken = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const token = req.cookies.token;
-
-    if (!token) {
-        return res.status(401).json({ error: "Authentication required" });
-    }
+    if (!token) return res.status(401).json({ error: "Authentication required" });
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
@@ -64,15 +79,14 @@ const authenticateToken = async (req: express.Request, res: express.Response, ne
     }
 };
 
-// Routes
+// --- ROUTES ---
+
 app.get("/products", (req, res) => res.json(products));
 
-// Get CSRF Token (call this on page load)
 app.get("/csrf-token", csrfProtection, (req, res) => {
     res.json({ csrfToken: (req as any).csrfToken() });
 });
 
-// Register
 app.post("/register", async (req, res) => {
     try {
         const { email, password, fullName } = req.body;
@@ -92,10 +106,10 @@ app.post("/register", async (req, res) => {
         const token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT_SECRET!, { expiresIn: "24h" });
 
         res.cookie("token", token, {
-            httpOnly: true, // CRITICAL: Prevents XSS
-            secure: false,  // Set to true in production with HTTPS
+            httpOnly: true,
+            secure: isProduction, // Dynamic Secure Flag
             sameSite: 'lax',
-            maxAge: 24 * 60 * 60 * 1000 // 24 hours
+            maxAge: 24 * 60 * 60 * 1000
         });
 
         res.status(201).json({
@@ -108,7 +122,6 @@ app.post("/register", async (req, res) => {
     }
 });
 
-// Login
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -125,7 +138,7 @@ app.post("/login", async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
+            secure: isProduction, // Dynamic Secure Flag
             sameSite: 'lax',
             maxAge: 24 * 60 * 60 * 1000
         });
@@ -140,7 +153,6 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// Get current user
 app.get("/me", authenticateToken, async (req, res) => {
     try {
         const userId = (req as any).user.userId;
@@ -154,7 +166,6 @@ app.get("/me", authenticateToken, async (req, res) => {
     }
 });
 
-// Update cart
 app.put("/cart", authenticateToken, csrfProtection, async (req, res) => {
     try {
         const userId = (req as any).user.userId;
@@ -172,33 +183,24 @@ app.put("/cart", authenticateToken, csrfProtection, async (req, res) => {
     }
 });
 
-// Logout
 app.post("/logout", (req, res) => {
     res.clearCookie("token");
     res.json({ message: "Logged out successfully" });
 });
-
-
-// Add this to your server file
-// Add this to your server file
 
 app.put("/update-name", authenticateToken, async (req, res) => {
     try {
         const userId = (req as any).user.userId;
         const { fullName } = req.body;
 
-        if (!fullName) {
-            return res.status(400).json({ error: "Full name is required" });
-        }
+        if (!fullName) return res.status(400).json({ error: "Full name is required" });
 
         const result = await pool.query(
             "UPDATE users SET full_name = $1 WHERE id = $2 RETURNING id, email, full_name, cart_products",
             [fullName, userId]
         );
 
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: "User not found" });
-        }
+        if (result.rows.length === 0) return res.status(404).json({ error: "User not found" });
 
         const user = result.rows[0];
         res.json({
@@ -216,26 +218,15 @@ app.put("/update-password", authenticateToken, async (req, res) => {
         const userId = (req as any).user.userId;
         const { currentPassword, newPassword } = req.body;
 
-        if (!currentPassword || !newPassword) {
-            return res.status(400).json({ error: "Current and new passwords are required" });
-        }
-
-        if (newPassword.length < 6) {
-            return res.status(400).json({ error: "New password must be at least 6 characters long" });
-        }
+        if (!currentPassword || !newPassword) return res.status(400).json({ error: "Current and new passwords are required" });
+        if (newPassword.length < 6) return res.status(400).json({ error: "New password must be at least 6 characters long" });
 
         const result = await pool.query("SELECT password_hash FROM users WHERE id = $1", [userId]);
-
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: "User not found" });
-        }
+        if (result.rows.length === 0) return res.status(404).json({ error: "User not found" });
 
         const user = result.rows[0];
         const validPassword = await bcrypt.compare(currentPassword, user.password_hash);
-
-        if (!validPassword) {
-            return res.status(401).json({ error: "Invalid current password" });
-        }
+        if (!validPassword) return res.status(401).json({ error: "Invalid current password" });
 
         const hash = await bcrypt.hash(newPassword, 10);
         await pool.query("UPDATE users SET password_hash = $1 WHERE id = $2", [hash, userId]);
@@ -246,5 +237,26 @@ app.put("/update-password", authenticateToken, async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 });
-const PORT = process.env.PORT || 3333;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+// 6. Start Server Logic
+if (isProduction) {
+    // PRODUCTION: HTTPS on Port 443
+    try {
+        const httpsOptions = {
+            key: fs.readFileSync('/etc/ssl/private/private.key'),
+            cert: fs.readFileSync('/etc/ssl/certificate.crt'),
+            ca: fs.readFileSync('/etc/ssl/ca_bundle.crt')
+        };
+
+        https.createServer(httpsOptions, app).listen(PORT, () => {
+            console.log(`🔒 Production Server running on HTTPS port ${PORT}`);
+        });
+    } catch (err) {
+        console.error("FAILED TO START PRODUCTION SERVER: SSL Keys not found.", err);
+    }
+} else {
+    // DEVELOPMENT: HTTP on Port 3333
+    http.createServer(app).listen(PORT, () => {
+        console.log(`🚧 Development Server running on HTTP port ${PORT}`);
+    });
+}
