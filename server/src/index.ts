@@ -15,8 +15,7 @@ dotenv.config({ path: path.join(__dirname, "../.env"), quiet: true });
 
 // 1. Determine Environment
 const isProduction = process.env.NODE_ENV === "production";
-const PORT = isProduction ? 443 : (process.env.PORT || 3333);
-
+const PORT = process.env.PORT || 3333;
 // 2. Initialize PostgreSQL
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
