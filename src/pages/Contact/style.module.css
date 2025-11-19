@@ -1,107 +1,181 @@
 .contactContainer {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 0;
+    color: #333;
 }
 
+/* --- Header Section --- */
 .header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 4rem;
 }
 
 .header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    /* Bolder to match the heavy logo text */
+    margin-bottom: 1rem;
+    color: #151e2d;
+    /* Sparky Navy */
 }
 
 .header p {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #666;
 }
 
+/* --- Main Grid Layout --- */
 .contentWrapper {
-    display: flex;
-    gap: 50px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    align-items: start;
 }
 
+/* --- Form Styling --- */
 .contactForm {
-    flex: 2;
-    background-color: var(--bg-paper);
-    padding: 30px;
-    border-radius: 8px;
-    min-width: 300px;
+    background: #fff;
 }
 
-.contactForm h2,
-.contactInfo h2 {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    color: var(--primary-dark);
+.contactForm h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #151e2d;
+    /* Sparky Navy */
 }
 
 .formGroup {
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
 }
 
 .formGroup label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
     font-weight: 600;
+    color: #444;
 }
 
-.formGroup input,
-.formGroup textarea {
+.contactForm input,
+.contactForm textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid var(--bg-subtle);
-    border-radius: 5px;
+    padding: 14px 16px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
     font-size: 1rem;
+    font-family: inherit;
+    background-color: #fdfdfd;
+    transition: all 0.2s ease;
     box-sizing: border-box;
-    transition: border-color 0.2s;
 }
 
-.formGroup input:focus,
-.formGroup textarea:focus {
+/* --- THEME MATCH: Navy Border + Subtle Gold Shadow --- */
+.contactForm input:focus,
+.contactForm textarea:focus {
+    border-color: #151e2d;
+    /* Sparky Navy Border */
+    background-color: #fff;
     outline: none;
-    border-color: var(--primary-main);
+    /* Very subtle gold glow to represent the 'Spark' */
+    box-shadow: 0 0 0 3px rgba(253, 184, 19, 0.15);
 }
 
+/* --- THEME MATCH: Navy Button --- */
 .submitButton {
     width: 100%;
-    padding: 15px;
-    background-color: var(--accent-main);
-    color: white;
+    padding: 16px;
+    background-color: #151e2d;
+    /* Sparky Navy */
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .submitButton:hover {
-    background-color: var(--accent-dark);
+    background-color: #232f42;
+    /* Slightly lighter navy */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(21, 30, 45, 0.2);
+    /* Optional: Add a gold bottom border on hover for a hidden detail */
+    border-bottom: 3px solid #fdb813;
 }
 
+.submitButton:active {
+    transform: translateY(0);
+    border-bottom: none;
+}
+
+/* --- Info Side Panel Styling --- */
 .contactInfo {
-    flex: 1;
-    min-width: 300px;
+    background-color: #f8f9fa;
+    /* Neutral Gray */
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid #eee;
+}
+
+.contactInfo h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #151e2d;
+    /* Sparky Navy */
 }
 
 .contactInfo p {
-    font-size: 1.1rem;
+    margin-bottom: 2rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+    color: #555;
 }
 
+/* --- THEME MATCH: Navy Labels --- */
+.contactInfo strong {
+    display: block;
+    color: #151e2d;
+    /* Sparky Navy */
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+/* --- THEME MATCH: Links with Gold Accent --- */
 .contactInfo a {
-    color: var(--accent-main);
+    color: #151e2d;
     text-decoration: none;
+    border-bottom: 1px solid rgba(21, 30, 45, 0.15);
+    transition: all 0.2s;
+    font-weight: 500;
 }
 
 .contactInfo a:hover {
-    text-decoration: underline;
+    color: #000;
+    background-color: rgba(253, 184, 19, 0.2);
+    /* Subtle Gold highlight marker style */
+    border-bottom-color: transparent;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 850px) {
+    .contentWrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .header {
+        margin-bottom: 2.5rem;
+    }
+
+    .contactInfo {
+        order: -1;
+        padding: 2rem;
+    }
 }

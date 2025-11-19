@@ -158,8 +158,8 @@
 
         width: 80%;
         max-width: 300px;
-        height: 100vh;
-        height: 100dvh;
+        height: 120vh;
+        height: 120dvh;
 
         background-color: var(--bg-default);
         flex-direction: column;

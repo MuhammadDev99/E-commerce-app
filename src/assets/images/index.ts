@@ -7,7 +7,7 @@ import teamMember1 from './team-member-1.png';
 import teamMember2 from './team-member-2.png';
 import teamMember3 from './team-member-3.png';
 import workshop from './workshop.jpeg';
-
+import search from './search.png';
 // Note: I excluded 'logo.txt' since it is not an image.
 
 export {
@@ -19,5 +19,6 @@ export {
     teamMember1,
     teamMember2,
     teamMember3,
-    workshop
+    workshop,
+    search
 };

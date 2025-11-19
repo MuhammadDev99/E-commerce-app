@@ -27,9 +27,6 @@ interface Product { id: number; title: string; description: string; price: numbe
 interface User { id: number; email: string; fullName: string; cartProducts: Product[]; }
 interface UserDB { id: number; email: string; password_hash: string; full_name: string; cart_products: Product[]; }
 
-// 3. Dynamic API Base URL
-// If prod: https://muhammad.developer.li (no port needed for 443)
-// If dev: http://localhost:3333
 const API_BASE = isProduction
     ? "https://muhammad.developer.li:3333"
     : `http://localhost:${PORT}`;
