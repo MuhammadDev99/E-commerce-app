@@ -85,7 +85,9 @@ app.get("/products", (req, res) => res.json(products));
 app.get("/csrf-token", csrfProtection, (req, res) => {
     res.json({ csrfToken: (req as any).csrfToken() });
 });
-
+app.get("/test", (req, res) => {
+    res.send("test")
+})
 app.post("/register", async (req, res) => {
     try {
         const { email, password, fullName } = req.body;
