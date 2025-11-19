@@ -6,15 +6,17 @@ import type { User } from "../types";
 import { cart } from "../signals/cartSignal";
 import { Link } from "react-router-dom";
 import { logoVertical } from "../assets/images";
+
 interface NavigationBarButtonProps {
     label: string;
     href: string;
+    onClick?: () => void;
 }
 
-function NavigationBarButton({ label, href }: NavigationBarButtonProps) {
+function NavigationBarButton({ label, href, onClick }: NavigationBarButtonProps) {
     return (
         <div className={styles.navigationBarButton}>
-            <Link to={href}>{label}</Link >
+            <Link to={href} onClick={onClick}>{label}</Link >
         </div>
     );
 }
@@ -24,6 +26,7 @@ function NavigationBar() {
     const isAuthenticated = user !== null;
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleScroll = () => {
         const currentScrollPos = window.pageYOffset;
@@ -31,26 +34,55 @@ function NavigationBar() {
         setPrevScrollPos(currentScrollPos);
     };
 
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
-
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, [prevScrollPos, visible, handleScroll]);
 
+    const isNavBarVisible = visible || isMenuOpen;
+
     return (
-        <div className={`${styles.navigationBar} ${!visible ? styles.hidden : ""}`}>
+        <div className={`${styles.navigationBar} ${!isNavBarVisible ? styles.hidden : ""}`}>
             <div className={styles.logo}>
-                <Link to="/"><img src={logoVertical}></img></Link >
+                <Link to="/" onClick={closeMenu}><img src={logoVertical} alt="Logo" /></Link >
             </div>
-            <div className={styles.buttons}>
-                <NavigationBarButton label="Products" href="/products" />
-                <NavigationBarButton label="Home" href="/" />
-                <NavigationBarButton label="About" href="/about" />
-                <NavigationBarButton label="Contact" href="/contact" />
-                {isAuthenticated ? <NavigationBarButton label="Dashboard" href="/dashboard" /> : <NavigationBarButton label="Login" href="/login" />}
-                <CartButton itemsCount={cart.value.length} />
+
+            <button
+                className={`${styles.hamburger} ${isMenuOpen ? styles.active : ""}`}
+                onClick={toggleMenu}
+                aria-label="Toggle navigation"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div className={`${styles.buttons} ${isMenuOpen ? styles.navActive : ""}`}>
+                <NavigationBarButton label="Products" href="/products" onClick={closeMenu} />
+                <NavigationBarButton label="Home" href="/" onClick={closeMenu} />
+                <NavigationBarButton label="About" href="/about" onClick={closeMenu} />
+                <NavigationBarButton label="Contact" href="/contact" onClick={closeMenu} />
+
+                {isAuthenticated ? (
+                    <NavigationBarButton label="Dashboard" href="/dashboard" onClick={closeMenu} />
+                ) : (
+                    <NavigationBarButton label="Login" href="/login" onClick={closeMenu} />
+                )}
+
+                {/* Replaced inline style with CSS class to fix desktop alignment */}
+                <div className={styles.cartWrapper} onClick={closeMenu}>
+                    <CartButton itemsCount={cart.value.length} />
+                </div>
             </div>
         </div>
     );

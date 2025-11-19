@@ -45,7 +45,7 @@ const app = express();
 // 4. Middleware
 app.use(cors({
     origin: isProduction
-        ? ["https://muhammad.developer.li"]
+        ? ["https://muhammad.developer.li", "http://localhost:5173", "http://192.168.0.104:5173"]
         : ["http://localhost:5173", "http://localhost:3333"],
     credentials: true,
 }));
