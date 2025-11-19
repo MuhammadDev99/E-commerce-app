@@ -31,7 +31,7 @@ interface UserDB { id: number; email: string; password_hash: string; full_name: 
 // If prod: https://muhammad.developer.li (no port needed for 443)
 // If dev: http://localhost:3333
 const API_BASE = isProduction
-    ? "https://muhammad.developer.li"
+    ? "https://muhammad.developer.li:3333"
     : `http://localhost:${PORT}`;
 
 const data = fs.readFileSync(path.join(__dirname, "../assets/products/products.json"), "utf-8");
