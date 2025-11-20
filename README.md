@@ -34,7 +34,7 @@ You can explore the application without registering by using these guest credent
 
 | Role | Email | Password |
 | :--- | :--- | :--- |
-| **Guest User** | `recruiter@demo.com` | `demo123` |
+| **Guest User** | `recruiter@demo.com` | `demo12345` |
 
 > **Note:** The application is hosted on a private server. Please allow a moment for the initial handshake.
 
