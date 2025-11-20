@@ -26,6 +26,7 @@ async function PostRegister(data: RegistrationData): Promise<boolean> {
     return response.ok
 }
 function Register() {
+    document.title = "Register";
     const navigate = useNavigate();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

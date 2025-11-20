@@ -10,6 +10,7 @@ import { search } from "../../assets/images"
 const products = signal<Product[]>([])
 
 function Products() {
+    document.title = "Products";
     // Local state for the search input
     const [searchQuery, setSearchQuery] = useState("");
 

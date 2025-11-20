@@ -5,6 +5,7 @@ import { clearCart } from '../../signals/cartSignal';
 import { showMessage } from '../../signals/messageSignal';
 
 function Checkout() {
+    document.title = "Checkout";
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
 

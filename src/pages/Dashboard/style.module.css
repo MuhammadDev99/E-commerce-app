@@ -1,75 +1,89 @@
-/* Main Dashboard Layout */
+/* style.module.css */
 .dashboard {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     min-height: 100vh;
-    background-color: #f4f7f9;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: #333;
-    padding: 2rem;
-    box-sizing: border-box;
+    background-color: #f8f9fa;
+    /* Light gray background */
+    padding: 2rem 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .container {
-    width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-/* Header */
+/* --- Header --- */
 .header {
+    margin-bottom: 2.5rem;
     text-align: center;
-    margin-bottom: 2rem;
 }
 
 .header h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: #1a2533;
-    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    color: #1a202c;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
 .header p {
+    color: #718096;
     font-size: 1.1rem;
-    color: #6b7280;
-    margin: 0;
 }
 
-/* Cards Container */
+/* --- Grid Layout --- */
 .cardsContainer {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
 }
 
-/* Individual Card */
+/* Desktop: 2 columns, with Profile taking full width or side-by-side */
+@media (min-width: 768px) {
+    .cardsContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Make profile section span full width if you prefer, or keep it 1 column */
+    .card:first-child {
+        grid-column: span 2;
+    }
+}
+
+/* --- Card Styles --- */
 .card {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: box-shadow 0.2s ease-in-out;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s ease;
 }
 
-.card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #edf2f7;
 }
 
-.card h2 {
+.cardHeader h2 {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    color: #374151;
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 0.75rem;
+    color: #2d3748;
+    margin: 0;
 }
 
-/* Form Elements */
+.cardIcon {
+    color: #4a5568;
+}
+
+/* --- Forms & Inputs --- */
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .formGroup {
@@ -79,100 +93,120 @@
 }
 
 .formGroup label {
+    font-size: 0.875rem;
     font-weight: 500;
-    color: #4b5563;
+    color: #4a5568;
 }
 
 .input {
     padding: 0.75rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    color: #2d3748;
+    transition: all 0.2s;
+    background-color: #fff;
 }
 
 .input:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
 }
 
-/* Name Edit Container */
-.nameEditContainer {
+.inputError {
+    border-color: #e53e3e;
+}
+
+.errorMessage {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* --- Name Edit Section --- */
+.nameDisplay {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    background: #f7fafc;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #edf2f7;
 }
 
-.nameEditContainer span {
-    font-size: 1rem;
-    color: #1f2937;
+.nameText {
+    font-weight: 500;
+    color: #2d3748;
 }
 
-/* Buttons */
+.nameEditForm {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* --- Buttons --- */
 .buttonPrimary,
 .buttonSecondary,
-.buttonDanger {
+.buttonDanger,
+.buttonIcon {
     padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+    border-radius: 8px;
     font-weight: 500;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-.buttonPrimary:hover,
-.buttonSecondary:hover,
-.buttonDanger:hover {
-    transform: translateY(-1px);
-}
-
-.buttonPrimary:active,
-.buttonSecondary:active,
-.buttonDanger:active {
-    transform: translateY(0);
+    transition: all 0.2s;
+    border: none;
 }
 
 .buttonPrimary {
-    background-color: #3b82f6;
+    background-color: #3182ce;
     color: white;
 }
 
 .buttonPrimary:hover {
-    background-color: #2563eb;
+    background-color: #2b6cb0;
 }
 
 .buttonSecondary {
-    background-color: #e5e7eb;
-    color: #374151;
+    background-color: transparent;
+    color: #3182ce;
+    border: 1px solid #3182ce;
+    padding: 0.5rem 1rem;
 }
 
 .buttonSecondary:hover {
-    background-color: #d1d5db;
+    background-color: #ebf8ff;
+}
+
+.buttonIcon {
+    background: none;
+    color: #718096;
+    padding: 0.25rem;
+}
+
+.buttonIcon:hover {
+    color: #2d3748;
 }
 
 .buttonDanger {
-    background-color: #ef4444;
-    color: white;
+    width: 100%;
+    background-color: #fff5f5;
+    color: #c53030;
+    border: 1px solid #feb2b2;
 }
 
 .buttonDanger:hover {
-    background-color: #dc2626;
+    background-color: #c53030;
+    color: white;
+    border-color: #c53030;
 }
 
-.inputError {
-    border-color: #ef4444;
-    /* Red border */
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-    /* Subtle red glow */
-}
-
-.errorMessage {
-    color: #ef4444;
-    /* Red text */
-    font-size: 0.875rem;
-    /* Smaller font size */
-    margin-top: 0.25rem;
-    /* Small space above the message */
+/* --- Loading --- */
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    color: #718096;
 }

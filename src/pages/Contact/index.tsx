@@ -4,6 +4,7 @@ import { showMessage } from '../../signals/messageSignal';
 import { Link } from 'react-router-dom';
 
 function Contact() {
+    document.title = "Contact";
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');

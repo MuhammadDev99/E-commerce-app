@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 const featuredProducts = signal<Product[]>([]);
 
 function Home() {
+    document.title = "SparkyShop";
     useEffect(() => {
         getProducts().then((allProducts) => {
             // Display the first 4 products as featured

@@ -3,6 +3,7 @@ import styles from "./style.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function Cart() {
+    document.title = "Cart";
     const navigate = useNavigate();
     const productsInCart = cart.value;
 

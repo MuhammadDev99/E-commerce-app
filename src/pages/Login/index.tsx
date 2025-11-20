@@ -11,6 +11,7 @@ interface LoginData {
 
 
 export default function Login() {
+    document.title = "Login";
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 

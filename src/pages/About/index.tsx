@@ -3,6 +3,7 @@ import { SHOP_NAME } from "../../constants";
 import { Link } from "react-router-dom";
 import { workshop, teamMember1, teamMember2, teamMember3 } from "../../assets/images";
 function About() {
+    document.title = "About";
     return (
         <div className={styles.aboutPage}>
             {/* --- Hero Section --- */}
