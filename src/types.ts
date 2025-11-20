@@ -29,4 +29,11 @@ interface Product { id: number; title: string; description: string; price: numbe
 interface User { id: number; email: string; fullName: string; cartProducts: Product[]; }
 
 interface PromiseResult { response: any; error: any; }
+
+export interface ApiResponse<T> {
+    data: T | null;
+    error: string | null;
+}
+
+
 export type { Comment, Product, messageType, message, AuthMode, User, PromiseResult }

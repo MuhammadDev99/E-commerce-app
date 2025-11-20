@@ -20,7 +20,7 @@ export default function Login() {
         setLoading(true);
 
         const formData = new FormData(event.currentTarget);
-        const { response, error } = await login(formData.get("email") as string, formData.get("password") as string);
+        const { error } = await login(formData.get("email") as string, formData.get("password") as string);
         setError(error);
         setLoading(false);
     };
