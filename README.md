@@ -19,7 +19,7 @@ The goal was to build a scalable frontend that interacts seamlessly with a RESTf
 ## 📸 Screenshots
 
 ### Home & Product Discovery
-![Home Page Screenshot](https://placehold.co/600x400?text=Replace+With+Your+Screenshot)
+![Home Page Screenshot](https://github.com/MuhammadDev99/E-commerce-app/blob/main/readme_files/products_video.gif)
 *Features a responsive grid layout and featured product showcase.*
 
 ### Secure Dashboard
