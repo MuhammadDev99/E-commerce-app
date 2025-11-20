@@ -6,23 +6,27 @@ interface RegistrationData {
     email: string;
     password: string;
 }
-function PostRegister(data: RegistrationData) {
-    fetch(`${API_BASE}/register`, {
+import { useNavigate } from "react-router-dom";
+import { showMessage } from "../../signals/messageSignal";
+async function PostRegister(data: RegistrationData): Promise<boolean> {
+    const response = await fetch(`${API_BASE}/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-    }).then((response) => {
-        if (response.ok) {
-            console.log("Registration successful!");
-        } else {
-            console.error("Registration failed!");
-        }
     })
+    if (response.ok) {
+        /* console.log("Registration successful!"); */
+        showMessage({ title: 'Success', content: 'Registration successful!', type: 'success', duration: 3000 });
+    } else {
+        /* console.error("Registration failed!"); */
+        showMessage({ title: 'Error', content: 'Registration failed!', type: 'error', duration: 3000 });
+    }
+    return response.ok
 }
 function Register() {
-
+    const navigate = useNavigate();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Handle form submission for registration
@@ -37,7 +41,13 @@ function Register() {
             email: email || "",
             password: password || ""
         };
-        PostRegister(registerData);
+        PostRegister(registerData).then((success) => {
+            if (success) {
+                navigate("/login");
+            }
+        })
+
+
     };
 
     return (
