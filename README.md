@@ -6,7 +6,7 @@
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791.svg)](https://www.postgresql.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-**[View Live Demo](https://muhammad.developer.li/E-commerce-app/)** | **[Report Bug](https://github.com/MuhammadDev99/E-commerce-app/issues)**
+**[View Live Demo](/)** | **[Report Bug](https://github.com/MuhammadDev99/E-commerce-app/issues)**
 
 ## 📖 Overview
 
